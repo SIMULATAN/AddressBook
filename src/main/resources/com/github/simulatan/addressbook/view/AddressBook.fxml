@@ -55,7 +55,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="233.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addContact" text="New" />
+                        <Button mnemonicParsing="false" onAction="#newContact" text="New" />
                         <Button mnemonicParsing="false" onAction="#deleteContact" text="Delete" />
                         <Button mnemonicParsing="false" onAction="#saveContact" text="Save" />
                      </children>
@@ -66,7 +66,7 @@
       </HBox>
       <VBox prefHeight="0.0" prefWidth="461.0">
          <children>
-            <Label text="Number Of Contacts: 0" />
+            <Label text="Number Of Contacts: 0" fx:id="lblNumberOfContacts" />
          </children>
       </VBox>
     </children>
