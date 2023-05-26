@@ -10,16 +10,25 @@ public class Contact {
 		return currentId++;
 	}
 
-	private final int id;
+	private int id;
 	private String name;
 	private String phone;
 	private String email;
 
 	public Contact(String name, String phone, String email) {
-		this.id = getNextId();
-		setName(name);
-		setPhone(phone);
-		setEmail(email);
+		this(getNextId(), name, phone, email);
+	}
+
+	public Contact(int id, String name, String phone, String email) {
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+	}
+
+	// package-private to allow AddressBook to set the id from the database
+	void setId(int id) {
+		this.id = id;
 	}
 
 	public int getId() {
@@ -32,6 +41,7 @@ public class Contact {
 
 	public void setName(String name) {
 		this.name = name;
+		AddressBook.getInstance().updateContact(this);
 	}
 
 	public String getPhone() {
@@ -43,6 +53,7 @@ public class Contact {
 		if (phone != null && !phone.matches("\\+?[\\d-]+")) throw new IllegalArgumentException("Invalid phone number!");
 
 		this.phone = phone;
+		AddressBook.getInstance().updateContact(this);
 	}
 
 	public String getEmail() {
@@ -56,6 +67,7 @@ public class Contact {
 		if (email != null && !email.matches(EMAIL_REGEX)) throw new IllegalArgumentException("Invalid E-Mail!");
 
 		this.email = email;
+		AddressBook.getInstance().updateContact(this);
 	}
 
 	@Override

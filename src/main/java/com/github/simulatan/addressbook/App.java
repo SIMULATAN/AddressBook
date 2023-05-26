@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.DriverManager;
 
 public class App extends Application {
 
@@ -33,4 +34,11 @@ public class App extends Application {
 		launch();
 	}
 
+	@Override
+	public void stop() throws Exception {
+		try {
+			DriverManager.getConnection("jdbc:derby:;shutdown=true");
+		} catch (Exception ex) {}
+		super.stop();
+	}
 }
